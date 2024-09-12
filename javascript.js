@@ -5,6 +5,10 @@ const multiply = (a, b) => a * b;
 const divide = (a, b) => a / b;
 
 // Represent each part of a calculator operation, will be useful to update display
-const firstNum;
-const operator;
-const secondNum;
+let firstNum;
+let operator;
+let secondNum;
+
+const operate = (firstNum, operator, secondNum) => {
+    add(firstNum, secondNum);
+}
