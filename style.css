@@ -1,0 +1,8 @@
+.display {
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+    height: 32px;
+    border: 1px solid #c2c2c2de;
+    border-radius: 1px 1px;
+}
