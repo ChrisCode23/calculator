@@ -64,7 +64,7 @@ const operate = (firstNum, secondNum, operator) => {
     if (operations[operatorType]) {
         result = operations[operatorType](+firstNum, +secondNum)
     }
-    display.textContent = result;
+    display.textContent = Math.round(result * 100) / 100;
     
 }
 
