@@ -61,6 +61,14 @@ const clear = document.querySelector(".clear");
 // Checks the operator and based on it's type, executes a specific operation
 const operate = (firstNum, secondNum, operator) => {
     let result;
+
+    if (!firstNum && !secondNum) result = 0;
+    if (secondNum == 0 && operatorType == "divide") {
+        alert("You can't divide a number by 0!");
+        display.textContent = "ERROR";
+        return;
+    };
+    
     if (operations[operatorType]) {
         result = operations[operatorType](+firstNum, +secondNum)
     }
