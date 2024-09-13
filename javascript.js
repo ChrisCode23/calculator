@@ -15,6 +15,7 @@ let secondNum;
 const display = document.querySelector(".display");
 const digits = document.querySelectorAll(".digit");
 const operators = document.querySelectorAll(".operator");
+const comma = document.querySelector(".comma");
 const equal = document.querySelector(".equal");
 const clear = document.querySelector(".clear");
 
@@ -32,6 +33,12 @@ const clear = document.querySelector(".clear");
         digit.addEventListener(("click"), () => {
             display.textContent += `${digit.id}`
         })
+    })
+
+    // Disables comma if it's already been used
+    comma.addEventListener(("click"), () => {
+        if (display.textContent.includes(".")) comma = disabled;
+        display.textContent += `${comma.id}`;
     })
 
     operators.forEach((operator) => {
