@@ -106,9 +106,13 @@ display.textContent = 0;
     document.addEventListener(("keydown"), (event) => {
         let key;
 
+        if (display.textContent == "" && key) key = disabled;
+
         if (event.key == "Backspace") {
         display.textContent = display.textContent.slice(0, -1);
         }
+
+
     })
 
 
@@ -116,6 +120,21 @@ display.textContent = 0;
     comma.addEventListener(("click"), () => {
         if (display.textContent.includes(".")) comma = disabled;
         display.textContent += `${comma.id}`;
+    })
+
+    // Comma keyboard support
+    document.addEventListener(("keydown"), (event) => {
+        let key;
+
+        if (event.key == ".") {
+            key = event.key;
+        } else {
+            return;
+        }
+
+        if (display.textContent.includes(".")) key = disabled;
+        display.textContent += `${key}`;
+
     })
 
 
