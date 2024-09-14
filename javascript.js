@@ -61,7 +61,7 @@ display.textContent = 0;
     document.addEventListener(("keydown"), (event) => {
         let key;
 
-
+        // Pressed key is used only if it's valid
         if (digitsAllowed.includes(event.key)) {
             key = event.key;
         } else {
@@ -97,16 +97,27 @@ display.textContent = 0;
     })
     
 
-    // Deletes last digit (slice is -10 to avoid "backspace" output)
+    // Deletes last digit
     backspace.addEventListener(("click"), () => {
-        display.textContent = display.textContent.slice(0, -10);
+        display.textContent = display.textContent.slice(0, -1);
     })
+
+    // Deletes with backspace key
+    document.addEventListener(("keydown"), (event) => {
+        let key;
+
+        if (event.key == "Backspace") {
+        display.textContent = display.textContent.slice(0, -1);
+        }
+    })
+
 
     // Disables comma if it's already been used
     comma.addEventListener(("click"), () => {
         if (display.textContent.includes(".")) comma = disabled;
         display.textContent += `${comma.id}`;
     })
+
 
     operators.forEach((operator) => {
         operator.addEventListener(("click"), () => {
@@ -115,11 +126,13 @@ display.textContent = 0;
             operatorType = operator.id;
         })
     })
+
     
     equal.addEventListener(("click"), () => {
         secondNum = display.textContent;
         operate(firstNum, secondNum, operatorType);
     })
+
 
     // Clears display and empty previous variables in order to avoid getting same result down the line
     clear.addEventListener(("click"), () => {
@@ -128,8 +141,6 @@ display.textContent = 0;
         secondNum = null;
         display.textContent = 0;
     })
-
-
 
 
 // Checks the operator and based on it's type, executes a specific operation
