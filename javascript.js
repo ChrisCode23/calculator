@@ -33,21 +33,22 @@ display.textContent = 0;
             }
 
             // Makes it so if default display value is 0, user can't add more
-            if (display.textContent == 0 && digit.id == "0") {
+             else if (display.textContent == 0 && digit.id == "0") {
                 return;
-            }
+             }
 
             /* Allows to enter decimals after point, if display number is 0 
              (without this, the next if statement would interfere by replacing the decimal point with the digit instead of 0) */
-            if (display.textContent == 0 && display.textContent.includes(".")) {
+             else if (display.textContent == 0 && display.textContent.includes(".")) {
                 display.textContent += `${digit.id}`;
                 return;
-            }
+             }
 
             // If it's 0 but user presses another digit, it will replace the 0 with the digit
-            if (display.textContent == 0 && digit.id != "0") {
+             else if (display.textContent == 0 && digit.id != "0") {
                 display.textContent = display.textContent.slice(0, -1);
             }
+
             display.textContent += `${digit.id}`
         })
     })
@@ -93,9 +94,9 @@ const operate = (firstNum, secondNum, operator) => {
 
     // Triggers when user enters only one number, avoids NaN error
     if (!firstNum && secondNum) result = secondNum;
-
     // If user presses equal without inserting a number
     if (!firstNum && !secondNum) result = 0;
+
 
     // Throws an error instead of prompting "Infinity"
     if (secondNum == 0 && operatorType == "divide") {
