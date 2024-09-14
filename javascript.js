@@ -106,8 +106,6 @@ display.textContent = 0;
     document.addEventListener(("keydown"), (event) => {
         let key;
 
-        if (display.textContent == "" && key) key = disabled;
-
         if (event.key == "Backspace") {
         display.textContent = display.textContent.slice(0, -1);
         }
@@ -136,6 +134,7 @@ display.textContent = 0;
         display.textContent += `${key}`;
 
     })
+    
 
 
     operators.forEach((operator) => {
