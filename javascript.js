@@ -20,6 +20,7 @@ const equal = document.querySelector(".equal");
 const clear = document.querySelector(".clear");
 const backspace = document.querySelector("#backspace");
 
+let digitsAllowed = "0123456789";
 
 // Default display value
 display.textContent = 0;
@@ -49,9 +50,52 @@ display.textContent = 0;
                 display.textContent = display.textContent.slice(0, -1);
             }
 
-            display.textContent += `${digit.id}`
+            if (display.textContent.length > 12) {
+                return;
+            } else {
+            display.textContent += `${digit.id}`;
+            }
         })
     })
+
+    document.addEventListener(("keydown"), (event) => {
+        let key;
+
+
+        if (digitsAllowed.includes(event.key)) {
+            key = event.key;
+        } else {
+            return;
+        }
+
+        if (display.textContent == "" && key == "0") {
+            display.textContent += `${key}`;
+        }
+
+        // Makes it so if default display value is 0, user can't add more
+         else if (display.textContent == 0 && key == "0") {
+            return;
+         }
+
+        /* Allows to enter decimals after point, if display number is 0 
+         (without this, the next if statement would interfere by replacing the decimal point with the digit instead of 0) */
+         else if (display.textContent == 0 && display.textContent.includes(".")) {
+            display.textContent += `${key}`;
+            return;
+         }
+
+        // If it's 0 but user presses another digit, it will replace the 0 with the digit
+         else if (display.textContent == 0 && key != "0") {
+            display.textContent = display.textContent.slice(0, -1);
+        }
+
+        if (display.textContent.length > 12) {
+            return;
+        } else {
+        display.textContent += `${key}`;
+        }
+    })
+    
 
     // Deletes last digit (slice is -10 to avoid "backspace" output)
     backspace.addEventListener(("click"), () => {
