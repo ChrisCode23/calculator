@@ -18,21 +18,27 @@ const operators = document.querySelectorAll(".operator");
 const comma = document.querySelector(".comma");
 const equal = document.querySelector(".equal");
 const clear = document.querySelector(".clear");
+const backspace = document.querySelector("#backspace");
 
-//A display variable keeps track of the numbers input in display by user
-//User must be able to enter numbers with multiple digits e.g "23"
-//Default is 0, but we want to replace 0 with the number we input
-//User input first number which is stored in firstNum variable and displays it
-//Once user is done entering digits of numbers
-//User chooses an operator which adds the firstNum variable to the operation, which type is determined by the operator chosen
-//User enters the second number which is stored in the secondNum variable and displays it
-//By pressing equal, returns the result of the operation in the display
 
+// Default display value
+display.textContent = 0;
     
     digits.forEach((digit) => {
         digit.addEventListener(("click"), () => {
+            // Makes it so if default display value is 0, user can't add more
+            // If it's 0 but user presses another digit, it will replace the 0 with the digit
+            if (display.textContent == 0 && digit.id == "0") return;
+            if (display.textContent == 0 && digit.id != "0") {
+                display.textContent = display.textContent.slice(0, -1);
+            }
             display.textContent += `${digit.id}`
         })
+    })
+
+    // Deletes last digit (slice is -10 to avoid "backspace" output)
+    backspace.addEventListener(("click"), () => {
+        display.textContent = display.textContent.slice(0, -10);
     })
 
     // Disables comma if it's already been used
@@ -59,7 +65,7 @@ const clear = document.querySelector(".clear");
         firstNum = null;
         operatorType = null;
         secondNum = null;
-        display.textContent = "";
+        display.textContent = 0;
     })
 
 
@@ -69,16 +75,25 @@ const clear = document.querySelector(".clear");
 const operate = (firstNum, secondNum, operator) => {
     let result;
 
+    // Triggers when user enters only one number, avoids NaN error
+    if (!firstNum && secondNum) result = secondNum;
+
+    // If user presses equal without inserting a number
     if (!firstNum && !secondNum) result = 0;
+
+    // Throws an error instead of prompting "Infinity"
     if (secondNum == 0 && operatorType == "divide") {
         alert("You can't divide a number by 0!");
         display.textContent = "ERROR";
         return;
     };
     
+    // Calls one of "operations" methods based on the operator pressed by user
     if (operations[operatorType]) {
         result = operations[operatorType](+firstNum, +secondNum)
     }
+
+    // Rounds to 2 decimals
     display.textContent = Math.round(result * 100) / 100;
     
 }
