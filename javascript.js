@@ -26,9 +26,25 @@ display.textContent = 0;
     
     digits.forEach((digit) => {
         digit.addEventListener(("click"), () => {
+            
+            // Allows to enter a 0 if display is empty (e.g. when entering second number)
+            if (display.textContent == "" && digit.id == "0") {
+                display.textContent += `${digit.id}`;
+            }
+
             // Makes it so if default display value is 0, user can't add more
+            if (display.textContent == 0 && digit.id == "0") {
+                return;
+            }
+
+            /* Allows to enter decimals after point, if display number is 0 
+             (without this, the next if statement would interfere by replacing the decimal point with the digit instead of 0) */
+            if (display.textContent == 0 && display.textContent.includes(".")) {
+                display.textContent += `${digit.id}`;
+                return;
+            }
+
             // If it's 0 but user presses another digit, it will replace the 0 with the digit
-            if (display.textContent == 0 && digit.id == "0") return;
             if (display.textContent == 0 && digit.id != "0") {
                 display.textContent = display.textContent.slice(0, -1);
             }
