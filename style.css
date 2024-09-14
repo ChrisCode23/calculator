@@ -1,8 +1,96 @@
+* {
+    box-sizing: border-box;
+}
+
+button {
+    font-size: 24px;
+    border-radius: 8px 8px;
+    border: 0px;
+}
+
+
+.page {
+    display: flex;
+    height: 100vh;
+    background-color: antiquewhite;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 400px;
+    height: 400px;
+    background-color: #161616;
+    display: flex;
+    flex-direction: column;
+    padding: 8px 12px;
+    border-radius: 4px 4px;
+    row-gap: 4px;
+}
+
 .display {
     display: flex;
     align-items: center;
+    justify-content: flex-end;
     padding: 0 8px;
-    height: 32px;
+    height: 64px;
     border: 1px solid #c2c2c2de;
-    border-radius: 1px 1px;
+    border-radius: 8px 8x;
+    background-color: #686565;
+    margin: 8px 0 6px 0;
+    font-size: 48px;
+}
+
+.row {
+    display: flex;
+    flex: 1;
+    column-gap: 4px;
+}
+
+.row button {
+    background-color: #1ba59efa;
+    opacity: 70%;
+}
+
+.row .operator {
+    background-color: #ee8b09;
+    opacity: 100%;
+}
+
+.row .equal {
+    background-color: #ee8b09;
+    opacity: 100%;
+}
+
+.row .clear {
+    background-color: #1da2d6fa;
+    opacity: 100%;
+}
+
+.row #backspace {
+    background-color: #1da2d6fa;
+    opacity: 100%;
+}
+
+.row > button {
+    flex: 1;
+}
+
+
+
+/* Selects element with id "0" */
+#\30  {
+    flex: 2.2;
+}
+
+#clear {
+    flex: 1.2;
+}
+
+#divide {
+    flex: 0.74;
+}
+
+#backspace {
+    flex: 1.2;
 }
