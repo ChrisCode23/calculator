@@ -183,8 +183,8 @@ const operate = (firstNum, secondNum, operator) => {
         result = operations[operatorType](+firstNum, +secondNum)
     }
 
-    // Rounds to 3 decimals
-    display.textContent = Math.round(result * 1000) / 1000;
+    // Rounds to 2 decimals
+    display.textContent = (Math.round(result * 100) / 100);
     
 }
 

@@ -39,6 +39,7 @@ button {
     background-color: #c0c0c0ee;
     margin: 8px 0 6px 0;
     font-size: 48px;
+    overflow: hidden;
 }
 
 .row {
