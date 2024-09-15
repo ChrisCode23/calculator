@@ -30,7 +30,7 @@ display.textContent = 0;
             
             // Allows to enter a 0 if display is empty (e.g. when entering second number)
             if (display.textContent == "" && digit.id == "0") {
-                display.textContent += `${digit.id}`;
+                display.textContent = display.textContent.slice(0, -1);
             }
 
             // Makes it so if default display value is 0, user can't add more
@@ -46,7 +46,7 @@ display.textContent = 0;
              }
 
             // If it's 0 but user presses another digit, it will replace the 0 with the digit
-             else if (display.textContent == 0 && digit.id != "0") {
+             else if (display.textContent == 0 && digit.id != "0" ) {
                 display.textContent = display.textContent.slice(0, -1);
             }
 
