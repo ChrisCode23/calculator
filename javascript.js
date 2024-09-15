@@ -69,7 +69,7 @@ display.textContent = 0;
         }
 
         if (display.textContent == "" && key == "0") {
-            display.textContent += `${key}`;
+            display.textContent = display.textContent.slice(0, -1);
         }
 
         // Makes it so if default display value is 0, user can't add more
