@@ -139,9 +139,38 @@ display.textContent = 0;
 
     operators.forEach((operator) => {
         operator.addEventListener(("click"), () => {
-            firstNum = display.textContent;
-            display.textContent = "";
-            operatorType = operator.id;
+
+            
+
+            // When user presses the same operator twice after only entering a number, returns that number by itself
+            if (firstNum && display.textContent == ""  && operator.id == operatorType){
+                secondNum = firstNum;
+                operate(firstNum, secondNum, operatorType);
+                firstNum = null;
+                secondNum = null;
+                operatorType = null;
+            // If user presses different operator second time around, nothing happens
+            } else if (firstNum && display.textContent == "" && operator.id != operatorType){
+                return;
+            
+
+            // When user presses the same operator again after entering second number instead of equal
+            } else if (firstNum && operator.id == operatorType) {
+                secondNum = display.textContent;
+                operate(firstNum, secondNum, operatorType);
+                firstNum = null;
+                secondNum = null;
+                operatorType = null;
+
+            // If user presses different operator second time around, nothing happens
+            } else if (firstNum && operator.id != operatorType) {
+                return;
+            } else {
+                firstNum = display.textContent;
+                display.textContent = "";
+                operatorType = operator.id;
+            }
+            
         })
     })
 
@@ -149,6 +178,9 @@ display.textContent = 0;
     equal.addEventListener(("click"), () => {
         secondNum = display.textContent;
         operate(firstNum, secondNum, operatorType);
+        firstNum = null;
+        secondNum = null;
+        operatorType = null;
     })
 
 
@@ -180,12 +212,13 @@ const operate = (firstNum, secondNum, operator) => {
     
     // Calls one of "operations" methods based on the operator pressed by user
     if (operations[operatorType]) {
-        result = operations[operatorType](+firstNum, +secondNum)
+        result = operations[operatorType](+firstNum, +secondNum);
     }
 
     // Rounds to 2 decimals
     display.textContent = (Math.round(result * 100) / 100);
     
 }
+
 
 
